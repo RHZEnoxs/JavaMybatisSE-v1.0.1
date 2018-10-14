@@ -2,39 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.enoxs.data.gen.dao.AppInfoMapper" >
   <resultMap id="BaseResultMap" type="com.enoxs.data.gen.model.AppInfo" >
-    <id column="ID" property="id" jdbcType="BIGINT" />
-    <result column="APP_NAME" property="appName" jdbcType="NVARCHAR" />
-    <result column="APP_VERSION" property="appVersion" jdbcType="NVARCHAR" />
-    <result column="APP_DATE" property="appDate" jdbcType="TIMESTAMP" />
-    <result column="APP_AUTHOR" property="appAuthor" jdbcType="NVARCHAR" />
-    <result column="APP_REMARK" property="appRemark" jdbcType="NVARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="app_name" property="appName" jdbcType="VARCHAR" />
+    <result column="app_version" property="appVersion" jdbcType="VARCHAR" />
+    <result column="app_date" property="appDate" jdbcType="TIMESTAMP" />
+    <result column="app_author" property="appAuthor" jdbcType="VARCHAR" />
+    <result column="app_remark" property="appRemark" jdbcType="VARCHAR" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from dbo.APP_INFO
-    where ID = #{id,jdbcType=BIGINT}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from app_info
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.enoxs.data.gen.model.AppInfo" useGeneratedKeys="true" keyProperty="id" >
-    insert into dbo.APP_INFO (APP_NAME, APP_VERSION, APP_DATE, 
-      APP_AUTHOR, APP_REMARK)
-    values (#{appName,jdbcType=NVARCHAR}, #{appVersion,jdbcType=NVARCHAR}, #{appDate,jdbcType=TIMESTAMP}, 
-      #{appAuthor,jdbcType=NVARCHAR}, #{appRemark,jdbcType=NVARCHAR})
+    insert into app_info (app_name, app_version, app_date, 
+      app_author, app_remark)
+    values (#{appName,jdbcType=VARCHAR}, #{appVersion,jdbcType=VARCHAR}, #{appDate,jdbcType=TIMESTAMP}, 
+      #{appAuthor,jdbcType=VARCHAR}, #{appRemark,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.enoxs.data.gen.model.AppInfo" >
-    update dbo.APP_INFO
-    set APP_NAME = #{appName,jdbcType=NVARCHAR},
-      APP_VERSION = #{appVersion,jdbcType=NVARCHAR},
-      APP_DATE = #{appDate,jdbcType=TIMESTAMP},
-      APP_AUTHOR = #{appAuthor,jdbcType=NVARCHAR},
-      APP_REMARK = #{appRemark,jdbcType=NVARCHAR}
-    where ID = #{id,jdbcType=BIGINT}
+    update app_info
+    set app_name = #{appName,jdbcType=VARCHAR},
+      app_version = #{appVersion,jdbcType=VARCHAR},
+      app_date = #{appDate,jdbcType=TIMESTAMP},
+      app_author = #{appAuthor,jdbcType=VARCHAR},
+      app_remark = #{appRemark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select ID, APP_NAME, APP_VERSION, APP_DATE, APP_AUTHOR, APP_REMARK
-    from dbo.APP_INFO
-    where ID = #{id,jdbcType=BIGINT}
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, app_name, app_version, app_date, app_author, app_remark
+    from app_info
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select ID, APP_NAME, APP_VERSION, APP_DATE, APP_AUTHOR, APP_REMARK
-    from dbo.APP_INFO
+    select id, app_name, app_version, app_date, app_author, app_remark
+    from app_info
   </select>
 </mapper>

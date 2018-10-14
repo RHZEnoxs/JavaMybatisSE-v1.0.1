@@ -2,25 +2,30 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <!--<typeAliases>-->
-        <!--<typeAlias alias="AppInfoDemo" type="com.enoxs.demo.AppInfoDemo"/>-->
-    <!--</typeAliases>-->
-
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-                <!--<property name="driver" value="com.mysql.jdbc.Driver"/>-->
                 <property name="url" value="jdbc:sqlserver://127.0.0.1:1433;databaseName=desktop" />
-                <!--<property name="url" value="jdbc:mysql://127.0.0.1:3306/desktop" />-->
+                <property name="username" value="Enoxs"/>
+                <property name="password" value="Rhz0908100!"/>
+            </dataSource>
+        </environment>
+        <!-- 資料庫 -->
+        <environment id="mysql">
+            <!--  指定事務管理類型，type="JDBC"指直接簡單使用了 JDBC 的提交和回滾設置 -->
+            <transactionManager type="JDBC"/>
+            <!--  dataSource 資料源配置，POOLED - JDBC 數據源連線池實現-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/desktop"/>
                 <property name="username" value="Enoxs"/>
                 <property name="password" value="Rhz0908100!"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/enoxs/demo/AppInfoMapperDemo.xml"/>
         <mapper resource="com/enoxs/data/gen/mapping/AppInfoMapper.xml"/>
     </mappers>
 </configuration>

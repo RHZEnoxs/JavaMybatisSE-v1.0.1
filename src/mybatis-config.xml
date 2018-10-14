@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--  XML 配置 : MyBatis -->
+<configuration>
+    <!-- 引入properties資源文件-->
+    <properties resource="db.properties"/>
+    <!-- MyBatis 日誌 -->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
+    </settings>
+    <environments default="mysql">
+        <!-- 資料庫 -->
+        <environment id="mysql">
+            <!--  指定事務管理類型，type="JDBC"指直接簡單使用了 JDBC 的提交和回滾設置 -->
+            <transactionManager type="JDBC"/>
+            <!--  dataSource 資料源配置，POOLED - JDBC 數據源連線池實現-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- mappers : MyBatis 持久化類的映射文件配置 -->
+    <mappers>
+        <mapper resource="com/enoxs/data/gen/mapping/AppInfoMapper.xml"/>
+    </mappers>
+</configuration>

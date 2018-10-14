@@ -4,11 +4,11 @@ import com.enoxs.data.gen.model.AppInfo;
 import java.util.List;
 
 public interface AppInfoMapper {
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(AppInfo record);
 
-    AppInfo selectByPrimaryKey(Long id);
+    AppInfo selectByPrimaryKey(Integer id);
 
     List<AppInfo> selectAll();
 
