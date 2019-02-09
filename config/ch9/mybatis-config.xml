@@ -31,6 +31,5 @@
     <!-- mappers告訴了MyBatis去哪裡找持久化類的映射文件 -->
     <mappers>
         <mapper resource="spring/mvc/code/ch9/mapper/UserMapper.xml"/>
-        <mapper resource="spring/mvc/code/ch9/mapper/ResultMapMapper.xml"/>
     </mappers>
 </configuration>

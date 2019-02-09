@@ -1,4 +1,4 @@
-package com.enoxs.factory;
+package spring.mvc.code.ch9.factory;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -7,13 +7,13 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.InputStream;
 
-public class DbSqlSessionFactory {
+public class FKSqlSessionFactory {
     private static SqlSessionFactory sqlSessionFactory = null;
 
     // 初始化創建SqlSessionFactory對象
     static{
         try (// 讀取mybatis-config.xml文件
-             InputStream is = Resources.getResourceAsStream("config/ch9/mybatis-config.xml");
+             InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
         ){
             sqlSessionFactory = new SqlSessionFactoryBuilder()
                     .build(is);

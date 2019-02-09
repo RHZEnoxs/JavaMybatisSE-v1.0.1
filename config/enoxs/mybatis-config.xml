@@ -2,24 +2,21 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<!-- XML 配置文件包含對 MyBatis 系統的核心設置 -->
+<!--  XML 配置 : MyBatis -->
 <configuration>
-    <!-- 引入properties资源文件 -->
+    <!-- 引入properties資源文件-->
     <properties resource="db.properties"/>
-    <!-- 指定 MyBatis 所用日誌的具體實現 -->
+    <!-- MyBatis 日誌 -->
     <settings>
         <setting name="logImpl" value="LOG4J"/>
+        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
     </settings>
-    <!-- 設置別名 -->
-    <typeAliases>
-        <typeAlias  alias="user" type="spring.mvc.code.ch9.domain.User"/>
-    </typeAliases>
-    <!-- 環境配置，即連接的數據庫。 -->
     <environments default="mysql">
+        <!-- 資料庫 -->
         <environment id="mysql">
-            <!-- 指定事務管理類型，type="JDBC"指直接簡單使用了JDBC的提交和回滾設置 -->
+            <!--  指定事務管理類型，type="JDBC"指直接簡單使用了 JDBC 的提交和回滾設置 -->
             <transactionManager type="JDBC"/>
-            <!-- dataSource指數據源配置，POOLED是JDBC連接對象的數據源連接池的實現。 -->
+            <!--  dataSource 資料源配置，POOLED - JDBC 數據源連線池實現-->
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
@@ -28,9 +25,8 @@
             </dataSource>
         </environment>
     </environments>
-    <!-- mappers告訴了MyBatis去哪裡找持久化類的映射文件 -->
+    <!-- mappers : MyBatis 持久化類的映射文件配置 -->
     <mappers>
-        <mapper resource="spring/mvc/code/ch9/mapper/UserMapper.xml"/>
-        <mapper resource="spring/mvc/code/ch9/mapper/ResultMapMapper.xml"/>
+        <mapper resource="com/enoxs/data/gen/mapping/AppInfoMapper.xml"/>
     </mappers>
 </configuration>

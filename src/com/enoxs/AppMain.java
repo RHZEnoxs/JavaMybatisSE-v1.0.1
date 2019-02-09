@@ -1,7 +1,6 @@
 package com.enoxs;
 
 
-import com.enoxs.data.gen.dao.AppInfoMapper;
 import com.enoxs.data.gen.model.AppInfo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

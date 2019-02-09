@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用戶自定義的命名空間。 -->
+<mapper namespace="spring.mvc.code.ch9.mapper.ResultMapMapper">
+
+    <!-- select操作
+        resultType="map"表示返回的是一個Map對象
+        使用列名做key，值做value -->
+    <select id="selectUser" resultType="map">
+  	  SELECT * FROM TB_USER
+    </select>
+
+    <resultMap id="userResultMap" type="spring.mvc.code.ch9.domain.User">
+        <id property="id" column="user_id"/>
+        <result property="name" column="user_name"/>
+        <result property="sex" column="user_sex"/>
+        <result property="age" column="user_age"/>
+    </resultMap>
+
+    <select id="selectUser2" resultMap="userResultMap">
+  	  SELECT * FROM TB_USER2
+    </select>
+
+
+    <!-- 映射學生對象的resultMap -->
+    <resultMap id="studentResultMap" type="spring.mvc.code.ch9.domain.Student">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <!-- 關聯映射 -->
+        <association property="clazz" column="clazz_id"
+                     javaType="spring.mvc.code.ch9.domain.Clazz"
+                     select="selectClazzWithId"/>
+    </resultMap>
+
+    <!-- 根據班級id查詢班級 -->
+    <select id="selectClazzWithId" resultType="spring.mvc.code.ch9.domain.Clazz">
+  	  SELECT * FROM TB_CLAZZ where id = #{id}
+    </select>
+
+    <!-- 查詢所有學生信息 -->
+    <select id="selectStudent" resultMap="studentResultMap">
+  	  SELECT * FROM TB_STUDENT
+    </select>
+
+    <!-- 映射班級對象的resultMap -->
+    <resultMap id="clazzResultMap" type="spring.mvc.code.ch9.domain.Clazz">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <!-- 班級的學生屬性，因為一個班級有多個學生，所以該屬性是一個集合 -->
+        <collection property="students" javaType="ArrayList"
+                    column="id" ofType="spring.mvc.code.ch9.domain.Student"
+                    select="selectStudentWithId"/>
+    </resultMap>
+
+    <!-- 根據班級id查詢學生 -->
+    <select id="selectStudentWithId" resultType="spring.mvc.code.ch9.domain.Student">
+  	  SELECT * FROM TB_STUDENT where clazz_id = #{id}
+  	</select>
+
+    <!-- 查詢所有班級信息 -->
+    <select id="selectClazz" resultMap="clazzResultMap">
+  	  SELECT * FROM TB_CLAZZ
+    </select>
+
+</mapper>

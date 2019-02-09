@@ -4,33 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!-- XML 配置文件包含對 MyBatis 系統的核心設置 -->
 <configuration>
-    <!-- 引入properties资源文件 -->
-    <properties resource="db.properties"/>
     <!-- 指定 MyBatis 所用日誌的具體實現 -->
     <settings>
         <setting name="logImpl" value="LOG4J"/>
     </settings>
-    <!-- 設置別名 -->
-    <typeAliases>
-        <typeAlias  alias="user" type="spring.mvc.code.ch9.domain.User"/>
-    </typeAliases>
-    <!-- 環境配置，即連接的數據庫。 -->
     <environments default="mysql">
+        <!-- 環境配置，即連接的數據庫。 -->
         <environment id="mysql">
             <!-- 指定事務管理類型，type="JDBC"指直接簡單使用了JDBC的提交和回滾設置 -->
             <transactionManager type="JDBC"/>
             <!-- dataSource指數據源配置，POOLED是JDBC連接對象的數據源連接池的實現。 -->
             <dataSource type="POOLED">
-                <property name="driver" value="${driver}"/>
-                <property name="url" value="${url}"/>
-                <property name="username" value="${username}"/>
-                <property name="password" value="${password}"/>
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis"/>
+                <property name="username" value="Enoxs"/>
+                <property name="password" value="Rhz0908100!"/>
             </dataSource>
         </environment>
     </environments>
     <!-- mappers告訴了MyBatis去哪裡找持久化類的映射文件 -->
     <mappers>
-        <mapper resource="spring/mvc/code/ch9/mapper/UserMapper.xml"/>
-        <mapper resource="spring/mvc/code/ch9/mapper/ResultMapMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch8/mapper/UserMapper.xml"/>
     </mappers>
 </configuration>

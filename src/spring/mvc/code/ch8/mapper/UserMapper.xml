@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用戶自定義的命名空間。 -->
+<mapper namespace="spring.mvc.code.ch8.mapper.UserMapper">
+
+<!--
+    id="save"是唯一的標示符
+    parameterType屬性指明插入時使用的參數類型
+    useGeneratedKeys="true"表示使用數據庫的自動增長策略
+-->
+    <insert id="save" parameterType="spring.mvc.code.ch8.domain.User" useGeneratedKeys="true">
+  	  INSERT INTO TB_USER(name,sex,age)
+  	  VALUES(#{name},#{sex},#{age})
+    </insert>
+
+</mapper>

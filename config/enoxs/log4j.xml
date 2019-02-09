@@ -6,8 +6,8 @@
             <param name="ConversionPattern" value="%5p [%t] %m%n" />
         </layout>
     </appender>
-    <logger name="spring.mvc.code.ch9.mapper">
-        <level value="DEBUG" />
+    <logger name="com.enoxs.data">
+        <level value="TRACE" />
     </logger>
     <root>
         <level value="ERROR" />

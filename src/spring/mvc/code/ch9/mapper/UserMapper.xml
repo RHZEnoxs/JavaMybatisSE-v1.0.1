@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用戶自定義的命名空間。 -->
+<mapper namespace="spring.mvc.code.ch9.mapper.UserMapper">
+    <!-- insert操作，
+       parameterType="user"表示該插入語句需要一個user對像作為參數
+       useGeneratedKeys="true"表示使用自動增長的主鍵 -->
+    <insert id="saveUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+  	  INSERT INTO TB_USER(name,sex,age)
+  	  VALUES(#{name},#{sex},#{age})
+    </insert>
+
+    <!-- select操作
+        parameterType="int"表示該查詢語句需要一個int類型的參數
+        resultType="user"表示返回的是一個user對象 -->
+    <select id="selectUser" parameterType="int" resultType="user">
+      SELECT * FROM TB_USER WHERE id = #{id}
+    </select>
+
+    <!-- update操作
+        parameterType="user"表示該更新語句需要一個user對像作為參數-->
+    <update id="modifyUser" parameterType="user">
+      UPDATE TB_USER
+      SET name = #{name},sex = #{sex},age = #{age}
+      WHERE id = #{id}
+    </update>
+
+    <!-- delete操作 parameterType="int"表示該查詢語句需要一個int類型的參數-->
+    <delete id="removeUser" parameterType="int">
+      DELETE FROM TB_USER WHERE id = #{id}
+    </delete>
+
+</mapper>
