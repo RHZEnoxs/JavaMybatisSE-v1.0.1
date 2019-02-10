@@ -1,6 +1,6 @@
 # 如果存在 tb_user2 表則刪除
-DROP TABLE  IF EXISTS tb_user;
-# 創建一個 tb_user 表, 有 id,name,sex,age 列
+DROP TABLE  IF EXISTS tb_user2;
+# 創建一個 tb_user2 表, 有 id,name,sex,age 列
 CREATE TABLE  tb_user2(
   user_id INT PRIMARY KEY AUTO_INCREMENT,
   user_name VARCHAR(18) ,

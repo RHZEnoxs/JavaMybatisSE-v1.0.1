@@ -9,11 +9,10 @@
     <!-- 指定 MyBatis 所用日誌的具體實現 -->
     <settings>
         <setting name="logImpl" value="LOG4J"/>
+        <!-- 要使延遲加載生效必須配置下面兩個屬性 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
-    <!-- 設置別名 -->
-    <typeAliases>
-        <typeAlias  alias="user" type="spring.mvc.code.ch9.domain.User"/>
-    </typeAliases>
     <!-- 環境配置，即連接的數據庫。 -->
     <environments default="mysql">
         <environment id="mysql">
@@ -30,7 +29,12 @@
     </environments>
     <!-- mappers告訴了MyBatis去哪裡找持久化類的映射文件 -->
     <mappers>
-        <mapper resource="spring/mvc/code/ch9/mapper/UserMapper.xml"/>
-        <mapper resource="spring/mvc/code/ch9/mapper/ResultMapMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/CardMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/PersonMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/ClazzMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/StudentMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/UserMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/OrderMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/ArticleMapper.xml"/>
     </mappers>
 </configuration>

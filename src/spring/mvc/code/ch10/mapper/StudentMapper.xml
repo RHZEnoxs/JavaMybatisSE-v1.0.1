@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用戶自定義的命名空間。 -->
+<mapper namespace="spring.mvc.code.ch10.mapper.StudentMapper">
+
+    <!-- 根據id查詢學生信息，多表連接，返回resultMap -->
+    <select id="selectStudentById" parameterType="int" resultMap="studentResultMap">
+  	SELECT * FROM tb_clazz c,tb_student s
+  	WHERE c.id = s.clazz_id
+  	 AND s.id = #{id}
+  </select>
+
+    <!-- 根據班級id查詢學生信息，返回resultMap -->
+    <select id="selectStudentByClazzId" parameterType="int"
+            resultMap="studentResultMap">
+  	SELECT * FROM tb_student WHERE clazz_id = #{id}
+  </select>
+
+    <!-- 映射Student對象的resultMap -->
+    <resultMap type="spring.mvc.code.ch10.domain.Student" id="studentResultMap">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <!-- 多對一關聯映射:association   -->
+        <association property="clazz" javaType="spring.mvc.code.ch10.domain.Clazz">
+            <id property="id" column="id"/>
+            <result property="code" column="code"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
+
+</mapper>

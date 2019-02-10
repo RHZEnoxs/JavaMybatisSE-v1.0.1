@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用戶自定義的命名空間。 -->
+<mapper namespace="spring.mvc.code.ch10.mapper.CardMapper">
+
+    <!-- 根據id查詢Card，返回Card對像 -->
+    <select id="selectCardById" parameterType="int" resultType="spring.mvc.code.ch10.domain.Card">
+  	SELECT * from tb_card where id = #{id}
+  </select>
+
+</mapper>

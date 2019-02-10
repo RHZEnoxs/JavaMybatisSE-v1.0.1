@@ -6,7 +6,7 @@
             <param name="ConversionPattern" value="%5p [%t] %m%n" />
         </layout>
     </appender>
-    <logger name="spring.mvc.code.ch9.mapper">
+    <logger name="spring.mvc.code.ch10.mapper">
         <level value="DEBUG" />
     </logger>
     <root>

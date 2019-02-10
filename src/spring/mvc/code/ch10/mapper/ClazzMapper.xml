@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用戶自定義的命名空間。 -->
+<mapper namespace="spring.mvc.code.ch10.mapper.ClazzMapper">
+
+    <!-- 根據id查詢班級信息，返回resultMap -->
+    <select id="selectClazzById" parameterType="int" resultMap="clazzResultMap">
+	  	SELECT * FROM tb_clazz  WHERE id = #{id}
+	  </select>
+
+    <!-- 映射Clazz對象的resultMap -->
+    <resultMap type="spring.mvc.code.ch10.domain.Clazz" id="clazzResultMap">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <!-- 一對多關聯映射:collection fetchType="lazy"表示懶加載  -->
+        <collection property="students" javaType="ArrayList"
+                    column="id" ofType="spring.mvc.code.ch10.domain.Student"
+                    select="spring.mvc.code.ch10.mapper.StudentMapper.selectStudentByClazzId"
+                    fetchType="lazy">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="sex" column="sex"/>
+            <result property="age" column="age"/>
+        </collection>
+    </resultMap>
+
+</mapper>
