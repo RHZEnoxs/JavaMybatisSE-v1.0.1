@@ -37,5 +37,6 @@
         <mapper resource="spring/mvc/code/ch10/mapper/OrderMapper.xml"/>
         <mapper resource="spring/mvc/code/ch10/mapper/ArticleMapper.xml"/>
         <mapper resource="spring/mvc/code/ch10/mapper/EmployeeMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/UserProMapper.xml"/>
     </mappers>
 </configuration>
