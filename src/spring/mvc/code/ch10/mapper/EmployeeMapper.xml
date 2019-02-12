@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用戶自定義的命名空間。 -->
+<mapper namespace="spring.mvc.code.ch10.mapper.EmployeeMapper">
+
+    <select id="selectEmployeeWithId" parameterType="int" resultType="spring.mvc.code.ch10.domain.Employee">
+  	SELECT * FROM tb_employee where id = #{id}
+  </select>
+
+    <!-- if -->
+    <select id="selectEmployeeByIdLike"
+            resultType="spring.mvc.code.ch10.domain.Employee">
+        SELECT * FROM tb_employee WHERE state = 'ACTIVE'
+        <!-- 可選條件，如果傳進來的參數有id屬性，則加上id查詢條件 -->
+        <if test="id != null ">
+            and id = #{id}
+        </if>
+    </select>
+
+    <!-- if -->
+    <select id="selectEmployeeByLoginLike"
+            resultType="spring.mvc.code.ch10.domain.Employee">
+        SELECT * FROM tb_employee WHERE state = 'ACTIVE'
+        <!-- 兩個可選條件，例如登錄功能的登錄名和密碼查詢 -->
+        <if test="loginname != null and password != null">
+            and loginname = #{loginname} and password = #{password}
+        </if>
+    </select>
+
+    <!-- choose（when、otherwise） -->
+    <select id="selectEmployeeChoose"
+            parameterType="hashmap"
+            resultType="spring.mvc.code.ch10.domain.Employee">
+        SELECT * FROM tb_employee WHERE state = 'ACTIVE'
+        <!-- 如果傳入了id，就根據id查詢，沒有傳入id就根據loginname和password查詢，否則查詢sex等於男的數據 -->
+        <choose>
+            <when test="id != null">
+                and id = #{id}
+            </when>
+            <when test="loginname != null and password != null">
+                and loginname = #{loginname} and password = #{password}
+            </when>
+            <otherwise>
+                and sex = '男'
+            </otherwise>
+        </choose>
+    </select>
+
+    <!-- 沒有使用where元素，如果沒有傳入state參數，會導致執行失敗 -->
+    <select id="findEmployeeLike"
+            resultType="spring.mvc.code.ch10.domain.Employee">
+        SELECT * FROM tb_employee WHERE
+        <if test="state != null ">
+            state = #{state}
+        </if>
+        <if test="id != null ">
+            and id = #{id}
+        </if>
+        <if test="loginname != null and password != null">
+            and loginname = #{loginname} and password = #{password}
+        </if>
+    </select>
+
+    <!-- where -->
+    <select id="selectEmployeeLike"
+            resultType="spring.mvc.code.ch10.domain.Employee">
+        SELECT * FROM tb_employee
+        <where>
+            <if test="state != null ">
+                state = #{state}
+            </if>
+            <if test="id != null ">
+                and id = #{id}
+            </if>
+            <if test="loginname != null and password != null">
+                and loginname = #{loginname} and password = #{password}
+            </if>
+        </where>
+    </select>
+
+    <!-- set -->
+    <update id="updateEmployeeIfNecessary"
+            parameterType="spring.mvc.code.ch10.domain.Employee">
+        update tb_employee
+        <set>
+            <if test="loginname != null">loginname=#{loginname},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="name != null">name=#{name},</if>
+            <if test="sex != null">sex=#{sex},</if>
+            <if test="age != null">age=#{age},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="sal != null">sal=#{sal},</if>
+            <if test="state != null">state=#{state}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!-- foreach -->
+    <select id="selectEmployeeIn" resultType="spring.mvc.code.ch10.domain.Employee">
+        SELECT *
+        FROM tb_employee
+        WHERE ID in
+        <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!-- bind -->
+    <select id="selectEmployeeLikeName"  resultType="spring.mvc.code.ch10.domain.Employee">
+        <bind name="pattern" value="'%' + _parameter.getName() + '%'" />
+        SELECT * FROM tb_employee
+        WHERE loginname LIKE #{pattern}
+    </select>
+
+</mapper>
