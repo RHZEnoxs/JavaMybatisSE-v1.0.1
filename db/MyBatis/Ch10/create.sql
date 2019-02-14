@@ -102,6 +102,8 @@ CREATE TABLE  tb_employee(
   STATE VARCHAR (18)
 );
 
+-- Procedure
+
 DROP TABLE  IF EXISTS tb_user_pro;
 # 創建一個 tb_user_pro 表, 有 id,name,sex,age 列
 CREATE TABLE  tb_user_pro(
@@ -121,6 +123,38 @@ INSERT INTO tb_user_pro (NAME,SEX,AGE) VALUES (V_NAME,V_SEX,V_AGE);
 SET V_ID = LAST_INSERT_ID();
 END
 
+# 查詢所有數據的存儲過程
+DROP PROCEDURE IF EXISTS select_user;
+CREATE PROCEDURE select_user()
+BEGIN
+SELECT id,NAME,sex,age FROM tb_user_pro;
+END
 
+# 根據id查詢數據的存儲過程
+DROP PROCEDURE IF EXISTS select_user_by_id;
+
+CREATE PROCEDURE select_user_by_id(IN v_id INTEGER)
+BEGIN
+SELECT id,NAME,sex,age FROM tb_user_pro WHERE id = v_id;
+END
+
+# 修改數據的存儲過程
+DROP PROCEDURE IF EXISTS update_user;
+
+CREATE PROCEDURE update_user
+(IN v_id INTEGER,IN v_name VARCHAR(18),IN v_sex VARCHAR(19),IN v_age INTEGER)
+BEGIN
+UPDATE tb_user_pro SET NAME = v_name,sex = v_sex,age = v_age
+WHERE id = v_id;
+END
+
+# 刪除數據的存儲過程
+DROP PROCEDURE IF EXISTS delete_user_by_id;
+
+CREATE PROCEDURE delete_user_by_id(IN v_id INTEGER)
+BEGIN
+DELETE FROM tb_user_pro WHERE id = v_id;
+END
+-- OneLevelCache
 
 

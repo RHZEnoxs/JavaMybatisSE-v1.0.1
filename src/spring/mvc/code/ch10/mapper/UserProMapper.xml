@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用戶自定義的命名空間。 -->
+<mapper namespace="spring.mvc.code.ch10.mapper.UserProMapper">
+    <!--
+        # 插入數據的存儲過程
+        DROP PROCEDURE IF EXISTS insert_user;
+        DELIMITER //
+        CREATE PROCEDURE insert_user
+        (OUT v_id INTEGER,IN v_name VARCHAR(18),IN v_sex VARCHAR(19),IN v_age INTEGER)
+        BEGIN
+        # 執行insert操作，values中的值是傳入的參數
+        INSERT INTO tb_user_pro(NAME,sex,age) VALUES(v_name,v_sex,v_age);
+        # 將insert成功自動生成的主鍵id值設置到變量v_id中返回
+        SET v_id = LAST_INSERT_ID();
+        END
+        //
+     -->
+    <insert id="saveUser" parameterType="spring.mvc.code.ch10.domain.UserPro" statementType="CALLABLE">
+  	{call insert_user(
+  	#{id,mode=OUT,jdbcType=INTEGER},#{name,mode=IN},#{sex,mode=IN},#{age,mode=IN}
+  	)}
+  </insert>
+
+    <!--
+        # 查詢所有數據的存儲過程
+        DROP PROCEDURE IF EXISTS select_user;
+      DELIMITER //
+      CREATE PROCEDURE select_user()
+      BEGIN
+      SELECT id,NAME,sex,age FROM tb_user_pro;
+      END
+      //
+     -->
+    <select id="selectUser" resultType="spring.mvc.code.ch10.domain.UserPro" statementType="CALLABLE">
+  	{call select_user()}
+  </select>
+
+    <!--
+        # 根據id查詢數據的存儲過程
+        DROP PROCEDURE IF EXISTS select_user_by_id;
+      DELIMITER //
+      CREATE PROCEDURE select_user_by_id(IN v_id INTEGER)
+      BEGIN
+      SELECT id,NAME,sex,age FROM tb_user_pro WHERE id = v_id;
+      END
+      //
+     -->
+    <select id="selectUserById" parameterType="int" resultType="spring.mvc.code.ch10.domain.UserPro" statementType="CALLABLE">
+  	{call select_user_by_id(#{id,mode=IN})}
+  </select>
+
+    <!--
+        # 修改數據的存儲過程
+        DROP PROCEDURE IF EXISTS update_user;
+      DELIMITER //
+      CREATE PROCEDURE update_user
+      (IN v_id INTEGER,IN v_name VARCHAR(18),IN v_sex VARCHAR(19),IN v_age INTEGER)
+      BEGIN
+      UPDATE tb_user_pro SET NAME = v_name,sex = v_sex,age = v_age
+      WHERE id = v_id;
+      END
+      //
+     -->
+    <update id="modifyUser" parameterType="spring.mvc.code.ch10.domain.UserPro" statementType="CALLABLE">
+  	{call update_user(
+  	#{id,mode=IN},#{name,mode=IN},#{sex,mode=IN},#{age,mode=IN}
+  	)}
+  </update>
+
+    <!--
+        # 刪除數據的存儲過程
+        DROP PROCEDURE IF EXISTS delete_user_by_id;
+      DELIMITER //
+      CREATE PROCEDURE delete_user_by_id(IN v_id INTEGER)
+      BEGIN
+      DELETE FROM tb_user_pro WHERE id = v_id;
+      END
+      //
+     -->
+    <delete id="removeUser" parameterType="spring.mvc.code.ch10.domain.UserPro" statementType="CALLABLE">
+  	{call delete_user_by_id(#{id,mode=IN})}
+  </delete>
+
+</mapper>

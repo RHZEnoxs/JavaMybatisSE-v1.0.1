@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用戶自定義的命名空間。 -->
+<mapper namespace="spring.mvc.code.ch10.mapper.UserOneLevelCacheMapper">
+
+    <!-- 根據id查詢User -->
+    <select id="selectUserById" parameterType="int"
+            resultType="spring.mvc.code.ch10.domain.UserPro">
+  	SELECT * FROM TB_USER_PRO WHERE id = #{id}
+  </select>
+
+    <!-- 查詢所有User -->
+    <select id="selectAllUser" resultType="spring.mvc.code.ch10.domain.UserPro">
+  	SELECT * FROM TB_USER_PRO
+  </select>
+
+    <!-- 根據id刪除User -->
+    <delete id="deleteUserById" parameterType="int">
+  	DELETE FROM TB_USER_PRO WHERE id = #{id}
+  </delete>
+
+
+</mapper>
