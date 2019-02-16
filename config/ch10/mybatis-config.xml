@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- XML 配置文件包含對 MyBatis 系統的核心設置 -->
+<configuration>
+    <!-- 引入properties资源文件 -->
+    <properties resource="db.properties"/>
+    <!-- 指定 MyBatis 所用日誌的具體實現 -->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+        <!-- 要使延遲加載生效必須配置下面兩個屬性 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!-- 開啟二級緩存 -->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+    <!-- 環境配置，即連接的數據庫。 -->
+    <environments default="mysql">
+        <environment id="mysql">
+            <!-- 指定事務管理類型，type="JDBC"指直接簡單使用了JDBC的提交和回滾設置 -->
+            <transactionManager type="JDBC"/>
+            <!-- dataSource指數據源配置，POOLED是JDBC連接對象的數據源連接池的實現。 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- mappers告訴了MyBatis去哪裡找持久化類的映射文件 -->
+    <mappers>
+        <mapper resource="spring/mvc/code/ch10/mapper/CardMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/PersonMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/ClazzMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/StudentMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/UserMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/OrderMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/ArticleMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/EmployeeMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/UserProMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/UserOneLevelCacheMapper.xml"/>
+        <mapper resource="spring/mvc/code/ch10/mapper/UserTwoLevelCacheMapper.xml"/>
+    </mappers>
+</configuration>

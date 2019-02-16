@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用戶自定義的命名空間。 -->
+<mapper namespace="spring.mvc.code.ch10.mapper.UserTwoLevelCacheMapper">
+
+    <!-- 開啟二級緩存
+       回收策略為先進先出
+       自動刷新時間60s
+       最多緩存512個引用對像
+       只讀
+   -->
+    <cache
+            eviction="LRU"
+            flushInterval="60000"
+            size="512"
+            readOnly="true"/>
+
+    <!-- 根據id查詢UserPro -->
+    <select id="selectUserById" parameterType="int"
+            resultType="spring.mvc.code.ch10.domain.UserPro" >
+  	SELECT * FROM TB_USER_PRO WHERE id = #{id}
+  </select>
+
+    <!-- 根據id刪除UserPro -->
+    <select id="deleteUserById" parameterType="int">
+  	DELETE FROM TB_USER_PRO WHERE id = #{id}
+  </select>
+
+
+</mapper>
