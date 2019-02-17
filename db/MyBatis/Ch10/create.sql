@@ -6,7 +6,7 @@ CREATE TABLE  tb_card(
   CODE VARCHAR(18)
 );
 
-# 如果存在 tb_card 表則刪除
+# 如果存在 tb_person 表則刪除
 DROP TABLE  IF EXISTS tb_person;
 CREATE TABLE  tb_person(
   ID INT PRIMARY KEY AUTO_INCREMENT,
