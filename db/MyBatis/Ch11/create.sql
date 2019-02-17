@@ -98,6 +98,21 @@ CREATE TABLE  tb_ch11_item(
   FOREIGN  KEY (ARTICLE_ID) REFERENCES tb_article(ID)
 );
 
+-- DynamicSQL
+
+# 如果存在 tb_employee 表則刪除
+DROP TABLE  IF EXISTS tb_ch11_employee;
+CREATE TABLE  tb_ch11_employee(
+  ID INT(11) PRIMARY KEY AUTO_INCREMENT,
+  LOGINNAME VARCHAR (18),
+  PASSWORD VARCHAR (18),
+  NAME VARCHAR (18),
+  SEX CHAR(2) DEFAULT NULL,
+  AGE INT(11) DEFAULT NULL,
+  PHONE VARCHAR (21),
+  SAL DOUBLE ,
+  STATE VARCHAR (18)
+);
 
 --Database : mybatis
 --UserName: Enoxs

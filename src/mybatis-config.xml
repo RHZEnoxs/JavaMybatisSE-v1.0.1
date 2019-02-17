@@ -36,5 +36,6 @@
         <mapper class="spring.mvc.code.ch11.mapper.Ch11_ManyToManyUserMapper"/>
         <mapper class="spring.mvc.code.ch11.mapper.Ch11_OrderMapper"/>
         <mapper class="spring.mvc.code.ch11.mapper.Ch11_ArticleMapper"/>
+        <mapper class="spring.mvc.code.ch11.mapper.Ch11_EmployeeMapper"/>
     </mappers>
 </configuration>
