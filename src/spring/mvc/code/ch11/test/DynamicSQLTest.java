@@ -21,9 +21,9 @@ public class DynamicSQLTest {
             // 獲取EmployeeMapper對像
             Ch11_EmployeeMapper em = sqlSession.getMapper(Ch11_EmployeeMapper.class);
             // 測試testSelectWhitParam方法
-//            t.testSelectWhitParam(em);
+            t.testSelectWhitParam(em);
             // 測試testInsertEmployee方法
-			t.testInsertEmployee(em);
+//			t.testInsertEmployee(em);
             // 測試testUpdateEmployee方法
 //			t.testUpdateEmployee(em);
             // 測試testDeleteEmployee方法
@@ -91,8 +91,8 @@ public class DynamicSQLTest {
     public void testDeleteEmployee(Ch11_EmployeeMapper em){
         // 使用Map裝載參數
         Map<String, Object> param = new HashMap<String, Object>();
-        param.put("loginname", "jack");
-        param.put("password", "123456");
+        param.put("loginname", "update");
+        param.put("password", "fkjava");
         // 動態刪除
         em.deleteEmployee(param);
 
