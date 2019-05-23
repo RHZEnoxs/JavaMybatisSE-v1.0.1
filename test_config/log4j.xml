@@ -6,7 +6,10 @@
             <param name="ConversionPattern" value="%5p [%t] %m%n" />
         </layout>
     </appender>
-    <logger name="spring.mvc.code.ch11.mapper">
+    <logger name="com.enoxs.data.gen.dao">
+        <level value="DEBUG" />
+    </logger>
+    <logger name="com.enoxs.data.dao">
         <level value="DEBUG" />
     </logger>
     <root>

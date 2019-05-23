@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enoxs.data.gen.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.enoxs.data.gen.model.UserInfo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_NAME" property="userName" jdbcType="NVARCHAR" />
+    <result column="USER_ACCOUNT" property="userAccount" jdbcType="NVARCHAR" />
+    <result column="USER_PASSWORD" property="userPassword" jdbcType="NVARCHAR" />
+    <result column="USER_REMARK" property="userRemark" jdbcType="NVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dbo.USER_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.enoxs.data.gen.model.UserInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into dbo.USER_INFO (USER_NAME, USER_ACCOUNT, USER_PASSWORD, 
+      USER_REMARK)
+    values (#{userName,jdbcType=NVARCHAR}, #{userAccount,jdbcType=NVARCHAR}, #{userPassword,jdbcType=NVARCHAR}, 
+      #{userRemark,jdbcType=NVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.enoxs.data.gen.model.UserInfo" >
+    update dbo.USER_INFO
+    set USER_NAME = #{userName,jdbcType=NVARCHAR},
+      USER_ACCOUNT = #{userAccount,jdbcType=NVARCHAR},
+      USER_PASSWORD = #{userPassword,jdbcType=NVARCHAR},
+      USER_REMARK = #{userRemark,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select ID, USER_NAME, USER_ACCOUNT, USER_PASSWORD, USER_REMARK
+    from dbo.USER_INFO
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ID, USER_NAME, USER_ACCOUNT, USER_PASSWORD, USER_REMARK
+    from dbo.USER_INFO
+  </select>
+</mapper>

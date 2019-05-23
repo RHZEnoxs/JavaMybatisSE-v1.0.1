@@ -41,3 +41,40 @@ INSERT INTO [dbo].[APP_INFO]
 			'Enoxs',
 			'Algorithms / LeetCode / HackerRank')
 GO
+
+
+INSERT INTO [dbo].[USER_INFO]
+           ([USER_NAME]
+           ,[USER_ACCOUNT]
+           ,[USER_PASSWORD]
+           ,[USER_REMARK])
+     VALUES(
+			'伊諾斯',
+			'Enoxs',
+			'0000',
+			'開發者')
+GO
+
+INSERT INTO [dbo].[USER_INFO]
+           ([USER_NAME]
+           ,[USER_ACCOUNT]
+           ,[USER_PASSWORD]
+           ,[USER_REMARK])
+     VALUES(
+			'李察',
+			'RHZ',
+			'0000',
+			'管理員')
+GO
+
+INSERT INTO [dbo].[USER_INFO]
+           ([USER_NAME]
+           ,[USER_ACCOUNT]
+           ,[USER_PASSWORD]
+           ,[USER_REMARK])
+     VALUES(
+			'OwO 您好',
+			'OwO',
+			'12345',
+			'測試帳號')
+GO

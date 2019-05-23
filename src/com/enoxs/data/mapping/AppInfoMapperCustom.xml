@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enoxs.data.dao.AppInfoMapperCustom">
+    <resultMap id="BaseResultMap" type="com.enoxs.data.gen.model.AppInfo"
+               extends="com.enoxs.data.gen.dao.AppInfoMapper.BaseResultMap">
+    </resultMap>
+
+    <select id="selectByAppName" resultMap="BaseResultMap">
+    select id, app_name, app_version, app_date, app_author, app_remark
+    from app_info
+    where app_name = #{appName}
+  </select>
+
+</mapper>
