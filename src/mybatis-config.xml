@@ -30,8 +30,14 @@
     </environments>
     <!-- mappers告訴了MyBatis去哪裡找持久化類的映射文件 -->
     <mappers>
-        <mapper class="com.enoxs.data.gen.dao.AppInfoMapper"/>
-        <mapper class="com.enoxs.data.gen.dao.UserInfoMapper"/>
+        <!--<mapper class="com.enoxs.data.gen.dao.AppInfoMapper"/>-->
+        <!--<mapper class="com.enoxs.data.dao.AppInfoMapperCustom"/>-->
+
+        <!--<mapper class="com.enoxs.data.gen.dao.UserInfoMapper"/>-->
+
+        <mapper resource="com/enoxs/data/gen/mapping/AppInfoMapper.xml"/>
+        <mapper resource="com/enoxs/data/mapping/AppInfoMapperCustom.xml"/>
+
         <!--<mapper class="spring.mvc.code.ch11.mapper.Ch11_UserMapper"/>
         <mapper class="spring.mvc.code.ch11.mapper.Ch11_PersonMapper"/>
         <mapper class="spring.mvc.code.ch11.mapper.Ch11_CardMapper"/>
